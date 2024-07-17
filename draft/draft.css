@@ -1,0 +1,80 @@
+/* Reset box-sizing for all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Focus state for interactive elements */
+:focus {
+    outline: 2px solid #007BFF; 
+}
+
+/* Body styling with gradient */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #ffffff, #ff7e5f, #fe4a49); /* Gradient from orange to white to red */
+    margin: 0;
+    padding: 20px;
+    color: #333; 
+}
+
+/* Input field styling */
+input {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px #ddd;
+    background-color: rgba(255, 255, 255, 0.8); 
+}
+
+/* Search container styling */
+.search-container {
+    max-width: 600px;
+    margin: 300px auto 20px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Unified styling for input and suggestions container */
+.search-container input,
+.search-container .suggestions {
+    font-size: 16px; 
+}
+
+/* Additional input styling */
+.search-container input {
+    margin-bottom: 5px; 
+}
+
+/* Suggestions container styling */
+.search-container .suggestions {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none; 
+    position: absolute;
+    width: calc(100% - 2px); 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000; 
+    display: none; 
+}
+
+/* Unordered list styling */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* List item styling */
+ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee; 
+    background-color: rgba(255, 255, 255, 0.7); 
+}
+
+/* Hover state for list items */
+ul li:hover {
+    background-color: rgba(255, 200, 200, 0.7); 
+}

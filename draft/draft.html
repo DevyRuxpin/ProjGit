@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for responsiveness -->
+  <title>Fruit Autocomplete</title>
+    <link rel="stylesheet" href="./draft.css">
+</head>
+<body>
+<div class="search-container fruit-search"> <!-- Added class for CSS targeting -->
+  <form id="fruit-search-form"> <!-- Wrap in form for semantics, add role for accessibility -->
+    <input type="text" name="fruit" id="fruit" placeholder="Search fruit 🍎"> <!-- Added aria-label for accessibility -->
+    <div class="suggestions">
+      <ul id="suggestions-list" role="listbox"></ul> <!-- Added ID for JS targeting, role for accessibility -->
+    </div>
+  </form>
+</div>
+<script src="./draft.js"></script>
+</body>
+</html>
