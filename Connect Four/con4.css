@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top right, blue, yellow); /* Assuming you want to keep the gradient */
+}
+
+/* Game board styling */
+#gameBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 2.5px; /* Adjusted for consistency with grid-gap */
+}
+
+.cell.occupied.player1 {
+  background-color: red;
+}
+
+.cell.occupied.player2 {
+  background-color: yellow;
+}
