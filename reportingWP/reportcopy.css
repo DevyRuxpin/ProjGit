@@ -1,0 +1,137 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f4f8; /* Light grey background */
+    color: #333; /* Dark grey text color */
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #1e88e5; /* Blue background for header */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    text-align: center; /* Center the text in the header */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em; /* Increase font size for better readability */
+}
+
+.navbar {
+    background-color: #1e88e5; /* Blue background for navbar */
+    width: 100%; /* Full width */
+    padding: 15px 0; /* Increase padding for larger navbar */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center the navbar items */
+}
+
+.navbar li {
+    margin: 0 20px;
+}
+
+.navbar a {
+    color: #fff; /* White text color for links */
+    text-decoration: none;
+    font-size: 1.2em; /* Increase font size for better readability */
+    transition: color 0.3s ease; /* Animation for hover effect */
+}
+
+.navbar a:hover {
+    color: #ffeb3b; /* Yellow color on hover */
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+#articles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.article {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* White background for articles */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover effect */
+}
+
+.article:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+}
+
+#report {
+    width: 33.33%; /* Make the section one-third of the page wide */
+    margin: 20px auto; /* Center the section horizontally */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e3f2fd; /* Light blue background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+}
+
+#report form {
+    display: flex;
+    flex-direction: column;
+}
+
+#report div {
+    margin-bottom: 10px;
+}
+
+#report label {
+    margin-bottom: 5px;
+    color: #1e88e5; /* Blue color for labels */
+}
+
+#report input, #report textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: border-color 0.3s ease; /* Animation for focus effect */
+}
+
+#report input:focus, #report textarea:focus {
+    border-color: #1e88e5; /* Blue border on focus */
+}
+
+#report button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #1e88e5; /* Blue background for button */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animation for hover effect */
+}
+
+#report button:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

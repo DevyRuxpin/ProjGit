@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Report</title>
+    <link rel="stylesheet" href="reportcopy.css">
+</head>
+<body>
+    <header>
+        <h1>Incident Report</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="report.html">Home</a></li>
+                <li><a href="resourcescopy.html">Resources</a></li>
+                <li><a href="materials.html">Materials</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="articles">
+            <h2>Articles</h2>
+            <div class="article">Article 1</div>
+            <div class="article">Article 2</div>
+            <div class="article">Article 3</div>
+            <div class="article">Article 4</div>
+        </section>
+        <section id="report">
+            <h2>Report an Incident</h2>
+            <form id="report-form">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div>
+                    <label for="incident-date">Incident Date:</label>
+                    <input type="date" id="incident-date" name="incident-date">
+                </div>
+                <div>
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location">
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
