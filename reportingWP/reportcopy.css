@@ -1,137 +1,173 @@
+:root {
+    --primary-color: #333;
+    --secondary-color: #555;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --button-bg-color: #333;
+    --button-hover-bg-color: #555;
+    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f0f4f8; /* Light grey background */
-    color: #333; /* Dark grey text color */
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 header {
-    background-color: #1e88e5; /* Blue background for header */
-    color: #fff; /* White text color */
-    padding: 10px 20px;
-    text-align: center; /* Center the text in the header */
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2em; /* Increase font size for better readability */
-}
-
-.navbar {
-    background-color: #1e88e5; /* Blue background for navbar */
-    width: 100%; /* Full width */
-    padding: 15px 0; /* Increase padding for larger navbar */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .navbar ul {
     list-style: none;
     padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center; /* Center the navbar items */
+    justify-content: center;
+    animation: slideIn 1s ease-in-out;
 }
 
-.navbar li {
-    margin: 0 20px;
+.navbar ul li {
+    margin: 0 10px;
 }
 
-.navbar a {
-    color: #fff; /* White text color for links */
+.navbar ul li a {
+    color: white;
     text-decoration: none;
-    font-size: 1.2em; /* Increase font size for better readability */
-    transition: color 0.3s ease; /* Animation for hover effect */
+    transition: color 0.3s;
 }
 
-.navbar a:hover {
-    color: #ffeb3b; /* Yellow color on hover */
+.navbar ul li a:hover {
+    color: var(--secondary-color);
 }
 
 main {
-    flex: 1;
     padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 #articles {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin: 20px 0;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .article {
+    width: 75vw;
+    margin: 10px 0;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff; /* White background for articles */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover effect */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .article:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-#report {
-    width: 33.33%; /* Make the section one-third of the page wide */
-    margin: 20px auto; /* Center the section horizontally */
+.article img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.article p {
+    margin: 10px 0;
+}
+
+.article a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: var(--background-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.article a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Style for the form container */
+.box {
+    width: 75vw;
+    margin: 10px 0;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #e3f2fd; /* Light blue background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-#report form {
+.box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.box form {
     display: flex;
     flex-direction: column;
 }
 
-#report div {
-    margin-bottom: 10px;
+.box label {
+    margin-top: 10px;
 }
 
-#report label {
-    margin-bottom: 5px;
-    color: #1e88e5; /* Blue color for labels */
-}
-
-#report input, #report textarea {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
+.box input,
+.box textarea {
+    margin-top: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 3px;
-    transition: border-color 0.3s ease; /* Animation for focus effect */
+    border-radius: 4px;
 }
 
-#report input:focus, #report textarea:focus {
-    border-color: #1e88e5; /* Blue border on focus */
-}
-
-#report button {
-    align-self: flex-end;
-    padding: 10px 20px;
-    background-color: #1e88e5; /* Blue background for button */
-    color: #fff; /* White text color */
+.box button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--button-bg-color);
+    color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Animation for hover effect */
+    transition: background-color 0.3s;
 }
 
-#report button:hover {
-    background-color: #1565c0; /* Darker blue on hover */
+.box button:hover {
+    background-color: var(--button-hover-bg-color);
 }
 
-/* Keyframes for fade-in animation */
+/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
     }
     to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
         opacity: 1;
     }
 }
