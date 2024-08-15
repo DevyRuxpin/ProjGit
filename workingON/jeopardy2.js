@@ -10,10 +10,22 @@ $(document).ready(function() {
    */
   function getCategoryIds() {
     return $.ajax({
-      url: `${apiUrl}/categories?count=${NUM_CATEGORIES}`,
+      url: `${apiUrl}/categories?count=100`,
       method: 'GET'
     }).then(response => {
-      return response.map(category => category.id);
+      // Randomly select NUM_CATEGORIES from the fetched categories
+      const selectedCategories = [];
+      const usedIndices = new Set();
+      while (selectedCategories.length < NUM_CATEGORIES) {
+        const randomIndex = Math.floor(Math.random() * response.length);
+        if (!usedIndices.has(randomIndex)) {
+          usedIndices.add(randomIndex);
+          selectedCategories.push(response[randomIndex].id);
+        }
+      }
+      return selectedCategories;
+    }).catch(error => {
+      console.error("Error fetching category IDs:", error);
     });
   }
 
@@ -36,6 +48,8 @@ $(document).ready(function() {
         showing: null
       }));
       return { title: category.title, clues };
+    }).catch(error => {
+      console.error(`Error fetching category data for ID ${id}:`, error);
     });
   }
 
@@ -70,12 +84,32 @@ $(document).ready(function() {
     for (let clueIdx = 0; clueIdx < NUM_CLUES_PER_CAT; clueIdx++) {
       const $row = $('<tr>');
       for (let category of categories) {
-        $row.append($('<td>').text('?'));
+        $row.append($('<td>').text('?').data('clue', category.clues[clueIdx]));
       }
       $tbody.append($row);
     }
     $board.append($tbody);
   }
 
+  // Event listener for clicking on a clue
+  $('#game-board').on('click', 'td', function() {
+    const $cell = $(this);
+    const clue = $cell.data('clue');
+    if (!clue) return;
+
+    if (clue.showing === null) {
+      $cell.text(clue.question);
+      clue.showing = 'question';
+    } else if (clue.showing === 'question') {
+      $cell.text(clue.answer);
+      clue.showing = 'answer';
+    }
+  });
+
+  $('#restart-button').on('click', function() {
+    setupAndStart();
+  });
+
   setupAndStart();
 });
+
