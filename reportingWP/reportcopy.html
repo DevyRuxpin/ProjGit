@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Report</title>
+    <link rel="stylesheet" href="report.css">
+</head>
+<body>
+    <header>
+        <h1>Incident Report</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="report.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="materials.html">Materials</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="articles">
+            <h2>Articles</h2>
+            <div class="article">
+                <img src="https://cdn.cnn.com/cnnnext/dam/assets/210108123456-02-another-article-super-tease.jpg" alt="Another Article Preview">
+                <p>This is a brief preview of another article. It provides a summary of the main points discussed in the article...</p>
+                <a href="https://www.cnn.com/2024/08/06/politics/another-article" target="_blank">Read another article on CNN</a>
+            </div>
+        </section>
+        <!-- Incident Report Form -->
+        <section id="incident-report" class="box">
+            <h2>Incident Report Form</h2>
+            <form action="/submit-incident" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="date">Date of Incident:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="description">Description of Incident:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+                
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Kali Consulting LLC</p>
+    </footer>
+</body>
+</html>
