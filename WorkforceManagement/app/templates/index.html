@@ -1,12 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workforce Management</title>
-</head>
-<body>
-    <h1>Welcome to Workforce Management</h1>
-    <p>This is the index page.</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Workforce</h5>
+                <p class="card-text">Manage your workforce details.</p>
+                <a href="{{ url_for('workforce') }}" class="btn btn-primary">Go to Workforce</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Clients</h5>
+                <p class="card-text">Manage your clients.</p>
+                <a href="{{ url_for('clients') }}" class="btn btn-primary">Go to Clients</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tasks</h5>
+                <p class="card-text">Manage your tasks.</p>
+                <a href="{{ url_for('tasks') }}" class="btn btn-primary">Go to Tasks</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Schedules</h5>
+                <p class="card-text">Manage your schedules.</p>
+                <a href="{{ url_for('schedules') }}" class="btn btn-primary">Go to Schedules</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Reports</h5>
+                <p class="card-text">View your reports.</p>
+                <a href="{{ url_for('reports') }}" class="btn btn-primary">Go to Reports</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

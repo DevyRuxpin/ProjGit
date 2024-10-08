@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Reports</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('clients') }}">Clients</a></li>
+                <li><a href="{{ url_for('workforce') }}">Workforce</a></li>
+                <li><a href="{{ url_for('tasks') }}">Tasks</a></li>
+                <li><a href="{{ url_for('schedules') }}">Schedules</a></li>
+                <li><a href="{{ url_for('reports') }}">Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Created At</th>
+                    <th>Employee</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ report.title }}</td>
+                    <td>{{ report.content }}</td>
+                    <td>{{ report.created_at }}</td>
+                    <td>{{ report.employee.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

@@ -5,7 +5,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     
     # Database configuration
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///site.db'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'postgresql+asyncpg://Administrate:mypassword@localhost/mydatabase'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Additional configurations (if needed)

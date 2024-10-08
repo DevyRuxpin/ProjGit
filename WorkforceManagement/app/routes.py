@@ -1,7 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from app import app, db
-from app.models import Employee, Schedule, WorkLog
-from datetime import datetime
+from app.models import Employee, Schedule, WorkLog, Client, Task, Report
 
 @app.route('/')
 def index():
@@ -39,7 +38,27 @@ def view_schedule(schedule_id):
     schedule = Schedule.query.get_or_404(schedule_id)
     return render_template('view_schedule.html', schedule=schedule)
 
-@app.route('/create_employee', methods=['GET', 'POST'])
-def create_employee():
-    # Your code here
-    pass
+@app.route('/clients')
+def clients():
+    clients = Client.query.all()
+    return render_template('clients.html', clients=clients)
+
+@app.route('/workforce')
+def workforce():
+    employees = Employee.query.all()
+    return render_template('workforce.html', employees=employees)
+
+@app.route('/tasks')
+def tasks():
+    tasks = Task.query.all()
+    return render_template('tasks.html', tasks=tasks)
+
+@app.route('/schedules')
+def schedules():
+    schedules = Schedule.query.all()
+    return render_template('schedules.html', schedules=schedules)
+
+@app.route('/reports')
+def reports():
+    reports = Report.query.all()
+    return render_template('reports.html', reports=reports)

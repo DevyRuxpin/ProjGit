@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Clients</h1>
+    <p>Manage your clients here.</p>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Client List</h2>
+            <ul>
+                <!-- Assuming you have a list of clients passed to the template -->
+                {% for client in clients %}
+                <li>{{ client.name }} - {{ client.contact_info }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

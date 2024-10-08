@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Workforce</h1>
+    <p>Manage your workforce details here.</p>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Employees</h2>
+            <ul>
+                {% for employee in employees %}
+                <li>{{ employee.name }} - {{ employee.position }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
