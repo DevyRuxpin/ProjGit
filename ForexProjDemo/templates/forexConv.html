@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <header>
+        <h1>On-Demand FOREX Conversions</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Select Currency to Convert From</h2>
+            <form id="forex-form" method="POST" action="/convert">
+                <input type="text" name="from_currency" id="from_currency" maxlength="3" placeholder="e.g., USD">
+                <span id="from_currency_symbol"></span>
+            <h2>Select Currency to Convert To</h2>
+                <input type="text" name="to_currency" id="to_currency" maxlength="3" placeholder="e.g., EUR">
+                <span id="to_currency_symbol"></span>
+            <h2>Enter Amount to Convert</h2>
+                <input type="number" name="amount" id="amount" step="0.01">
+                <button type="submit" id="convert">Click to Convert</button>
+            </form>
+            <h2>Conversion Result</h2>
+                <input type="text" name="result" id="result" disabled>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Kali Consulting LLC</p>
+    </footer>
+</body>
+</html>
