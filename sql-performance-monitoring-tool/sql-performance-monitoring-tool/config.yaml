@@ -1,0 +1,17 @@
+database:
+  host: localhost
+  port: 5432
+  user: your_username
+  password: your_password
+  database_name: your_database
+
+alerting:
+  thresholds:
+    cpu_usage: 80
+    memory_usage: 75
+    query_response_time: 2.0
+
+visualization:
+  output_format: png
+  report_interval: daily
+  show_trends: true
