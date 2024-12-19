@@ -1,9 +1,9 @@
 database:
   host: localhost
-  port: 5432
-  user: your_username
-  password: your_password
-  database_name: your_database
+  port: 5001
+  user: postgres
+  password: ""  # Leave empty for no password
+  database_name: monitoring_db
 
 alerting:
   thresholds:
@@ -15,3 +15,4 @@ visualization:
   output_format: png
   report_interval: daily
   show_trends: true
+

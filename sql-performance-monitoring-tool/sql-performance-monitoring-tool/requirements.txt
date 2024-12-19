@@ -4,5 +4,4 @@ matplotlib
 seaborn
 psycopg2-binary
 numpy
-smtplib
 pyyaml
