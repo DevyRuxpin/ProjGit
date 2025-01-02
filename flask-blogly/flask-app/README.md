@@ -5,18 +5,24 @@ This is a simple Flask application named **Flask Blogly** that demonstrates the 
 ## Project Structure
 
 ```
-flask-app
-├── app.py                # Main entry point of the Flask application
-├── config.py             # Configuration settings for the application
-├── models.py             # SQLAlchemy models, including the User model
-├── requirements.txt      # List of dependencies
-├── static                # Static files (CSS, images, etc.)
-│   └── style.css         # CSS styles for the application
-├── templates             # HTML templates
-│   └── base.html         # Base HTML template
-├── .flaskenv             # Environment variables for Flask
-├── .gitignore            # Files and directories to ignore by Git
-└── README.md             # Project documentation
+flask-app 
+├── app.py # Main entry point of the Flask application 
+├── config.py # Configuration settings for the application
+├── models.py # SQLAlchemy models, including the User and Post models 
+├── requirements.txt # List of dependencies
+├── static # Static files (CSS, images, etc.) 
+│ └── style.css # CSS styles for the application 
+├── templates # HTML templates
+|   ├── base.html # Base HTML template 
+│   ├── list_users.html # Template to list users 
+│   ├── add_user.html # Template to add a new user
+│   ├── show_user.html # Template to show user details 
+│   ├── edit_user.html # Template to edit user details 
+│   ├── add_post.html # Template to add a new post 
+│   └── show_post.html # Template to show post details 
+├── .flaskenv # Environment variables for Flask 
+├── .gitignore # Files and directories to ignore by Git 
+└── README.md # Project documentation
 ```
 
 ## Setup Instructions

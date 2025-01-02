@@ -1,67 +1,48 @@
-import unittest
-from app import app, db
-from models import User
+def test_edit_post_get(self):
+    user = User(first_name='Jane', last_name='Doe', image_url='http://example.com/image.jpg')
+    db.session.add(user)
+    db.session.commit()
+    user_id = user.id
 
-class FlaskAppTests(unittest.TestCase):
+    post = Post(title='My First Post', content='This is the content of my first post.', user_id=user_id)
+    db.session.add(post)
+    db.session.commit()
+    post_id = post.id
 
-    @classmethod
-    def setUpClass(cls):
-        app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-        cls.client = app.test_client()
-        with app.app_context():
-            db.create_all()
+    response = self.client.get(f'/posts/{post_id}/edit')
+    self.assertEqual(response.status_code, 200)
+    self.assertIn(b'Edit Post', response.data)
 
-    @classmethod
-    def tearDownClass(cls):
-        with app.app_context():
-            db.drop_all()
+def test_edit_post_post(self):
+    user = User(first_name='Jane', last_name='Doe', image_url='http://example.com/image.jpg')
+    db.session.add(user)
+    db.session.commit()
+    user_id = user.id
 
-    def setUp(self):
-        self.app_context = app.app_context()
-        self.app_context.push()
-        db.create_all()
+    post = Post(title='My First Post', content='This is the content of my first post.', user_id=user_id)
+    db.session.add(post)
+    db.session.commit()
+    post_id = post.id
 
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
+    response = self.client.post(f'/posts/{post_id}/edit', data={
+        'title': 'Updated Post Title',
+        'content': 'Updated content of the post.'
+    }, follow_redirects=True)
+    self.assertEqual(response.status_code, 200)
+    self.assertIn(b'Updated Post Title', response.data)
+    self.assertIn(b'Updated content of the post.', response.data)
 
-    def test_index_redirect(self):
-        response = self.client.get('/')
-        self.assertEqual(response.status_code, 302)
-        self.assertIn('/users', response.location)
+def test_delete_post(self):
+    user = User(first_name='Jane', last_name='Doe', image_url='http://example.com/image.jpg')
+    db.session.add(user)
+    db.session.commit()
+    user_id = user.id
 
-    def test_list_users(self):
-        response = self.client.get('/users')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'User List', response.data)
+    post = Post(title='My First Post', content='This is the content of my first post.', user_id=user_id)
+    db.session.add(post)
+    db.session.commit()
+    post_id = post.id
 
-    def test_add_user_get(self):
-        response = self.client.get('/users/new')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Add User', response.data)
-
-    def test_add_user_post(self):
-        response = self.client.post('/users/new', data={
-            'first_name': 'John',
-            'last_name': 'Doe',
-            'image_url': 'http://example.com/image.jpg'
-        }, follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'John', response.data)
-        self.assertIn(b'Doe', response.data)
-
-    def test_show_user(self):
-        user = User(first_name='Jane', last_name='Doe', image_url='http://example.com/image.jpg')
-        db.session.add(user)
-        db.session.commit()
-        user_id = user.id
-
-        response = self.client.get(f'/users/{user_id}')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Jane', response.data)
-        self.assertIn(b'Doe', response.data)
-
-if __name__ == '__main__':
-    unittest.main()
+    response = self.client.post(f'/posts/{post_id}/delete', follow_redirects=True)
+    self.assertEqual(response.status_code, 200)
+    self.assertNotIn(b'My First Post', response.data)

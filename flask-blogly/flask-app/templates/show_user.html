@@ -36,6 +36,19 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .post-list {
+            margin-top: 2rem;
+        }
+        .post-list h3 {
+            margin-top: 0;
+        }
+        .post-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .post-list li {
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +60,17 @@
             <button type="submit" class="btn btn-danger">Delete User</button>
         </form>
         <a href="{{ url_for('list_users') }}" class="btn">Back to User List</a>
+    </div>
+    <div class="post-list">
+        <h3>Posts by {{ user.first_name }}:</h3>
+        <ul>
+            {% for post in user.posts %}
+            <li>
+                <a href="{{ url_for('show_post', post_id=post.id) }}">{{ post.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('add_post', user_id=user.id) }}" class="btn">Add Post</a>
     </div>
 </body>
 </html>
