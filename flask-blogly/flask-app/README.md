@@ -29,7 +29,7 @@ flask-app
 
 1. **Clone the repository:**
    ```
-   git clone <repository-url>
+   git clone flask-blogly/flask-app.git
    cd flask-app
    ```
 

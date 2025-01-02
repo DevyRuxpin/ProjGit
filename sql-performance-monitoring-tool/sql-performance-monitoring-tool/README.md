@@ -31,7 +31,7 @@ sql-performance-monitoring-tool
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/sql-performance-monitoring-tool.git
+   clone repo
    cd sql-performance-monitoring-tool
    ```
 
