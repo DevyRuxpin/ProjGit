@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Post</title>
+    <style>
+        /* Basic styling for the form */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Post</h1>
+    <form action="{{ url_for('create_post', user_id=user.id) }}" method="POST">
+        {{ form.hidden_tag() }}
+        <label for="title">Title:</label>
+        {{ form.title }}
+        <br>
+        <label for="content">Content:</label>
+        {{ form.content }}
+        <br>
+        <label for="tags">Tags:</label>
+        {{ form.tags }}
+        <br>
+        <button type="submit">Add Post</button>
+    </form>
+    <a href="{{ url_for('show_user', user_id=user.id) }}">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    <style>
+        /* Basic styling for the post details */
+        .post-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .post-details h2 {
+            margin-top: 0;
+        }
+        .post-details p {
+            white-space: pre-wrap;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-details">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <p><small>Posted on: {{ post.created_at }}</small></p>
+        <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn">Edit Post</a>
+        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+            <button type="submit" class="btn btn-danger">Delete Post</button>
+        </form>
+        <a href="{{ url_for('show_user', user_id=post.user_id) }}" class="btn">Back to User</a>
+    </div>
+</body>
+</html>
