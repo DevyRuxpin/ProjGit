@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.full_name }}{% endblock %}
+
+{% block content %}
+    <div class="card fade-in">
+        <div class="card-header">{{ user.full_name }}</div>
+        <div class="card-body">
+            <img src="{{ user.image_url }}" alt="{{ user.full_name }}" style="width: 150px; height: 150px; border-radius: 50%;">
+            <h3>Posts</h3>
+            <ul>
+                {% for post in user.posts %}
+                    <li><a href="{{ url_for('posts_show', post_id=post.id) }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('users_edit', user_id=user.id) }}" class="button">Edit Profile</a>
+            <form action="{{ url_for('users_destroy', user_id=user.id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="button">Delete Profile</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <img src="{{ user.image_url }}" alt="User Image">
+        <p>First Name: {{ user.first_name }}</p>
+        <p>Last Name: {{ user.last_name }}</p>
+        <a href="{{ url_for('users_edit', user_id=user.id) }}" class="button">Edit</a>
+        <form action="{{ url_for('users_destroy', user_id=user.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="button">Delete</button>
+        </form>
+    </div>
+{% endblock %}
