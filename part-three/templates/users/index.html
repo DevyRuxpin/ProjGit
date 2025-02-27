@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+    <h2>All Users</h2>
+    <a href="{{ url_for('users_new_form') }}" class="button">Add New User</a>
+    {% for user in users %}
+        <div class="card fade-in">
+            <div class="card-header">{{ user.full_name }}</div>
+            <div class="card-body">
+                <img src="{{ user.image_url }}" alt="{{ user.full_name }}" style="width: 100px; height: 100px; border-radius: 50%;">
+                <p><a href="{{ url_for('users_show', user_id=user.id) }}" class="button">View Profile</a></p>
+            </div>
+        </div>
+    {% endfor %}
+    <ul>
+        {% for user in users %}
+            <li><a href="{{ url_for('users_show', user_id=user.id) }}">{{ user.full_name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('users_new_form') }}" class="button">Add User</a>
+{% endblock %}

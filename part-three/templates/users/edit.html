@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Edit User</h1>
+    </header>
+    <div class="container">
+        <form action="{{ url_for('users_update', user_id=user.id) }}" method="POST">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+            
+            <label for="image_url">Image URL:</label>
+            <input type="url" id="image_url" name="image_url" value="{{ user.image_url }}">
+            
+            <button type="submit" class="button">Edit User</button>
+        </form>
+    </div>
+</body>
+</html>
