@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Top Stats Row -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Portfolio Value</h5>
+                    <h2 id="portfolio-value">$0.00</h2>
+                    <small class="text-muted">Updated in real-time</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Active Alerts</h5>
+                    <h2 id="active-alerts-count">0</h2>
+                    <small class="text-muted">Price monitoring active</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Trending</h5>
+                    <div id="trending-coins">
+                        {% for coin in trending %}
+                        <span class="badge bg-primary">{{ coin.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Price Chart</h5>
+                    <div class="chart-container">
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                    <div class="btn-group mt-3">
+                        <button class="btn btn-outline-primary" onclick="updateTimeframe('1d')">1D</button>
+                        <button class="btn btn-outline-primary" onclick="updateTimeframe('1w')">1W</button>
+                        <button class="btn btn-outline-primary" onclick="updateTimeframe('1m')">1M</button>
+                        <button class="btn btn-outline-primary" onclick="updateTimeframe('1y')">1Y</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio and Alerts Row -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Your Portfolio</h5>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addHoldingModal">
+                        Add Holding
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="portfolio-holdings">
+                        <!-- Portfolio holdings will be dynamically populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Price Alerts</h5>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#createAlertModal">
+                        Create Alert
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="active-alerts">
+                        <!-- Alerts will be dynamically populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Holding Modal -->
+<div class="modal fade" id="addHoldingModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Holding</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addHoldingForm">
+                    <div class="mb-3">
+                        <label class="form-label">Cryptocurrency</label>
+                        <select class="form-select" name="cryptocurrency" required>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Quantity</label>
+                        <input type="number" class="form-control" name="quantity" step="0.000001" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Purchase Price (USD)</label>
+                        <input type="number" class="form-control" name="purchase_price" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Holding</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Alert Modal -->
+<div class="modal fade" id="createAlertModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Price Alert</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createAlertForm">
+                    <div class="mb-3">
+                        <label class="form-label">Cryptocurrency</label>
+                        <select class="form-select" name="cryptocurrency" required>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Condition</label>
+                        <select class="form-select" name="condition" required>
+                            <option value="above">Above</option>
+                            <option value="below">Below</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price Threshold (USD)</label>
+                        <input type="number" class="form-control" name="price_threshold" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Alert</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<script>
+    // Initialize dashboard components
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeCharts();
+        loadPortfolioData();
+        loadAlerts();
+        setupWebSocket();
+    });
+</script>
+{% endblock %}

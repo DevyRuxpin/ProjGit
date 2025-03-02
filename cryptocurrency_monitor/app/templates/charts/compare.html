@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Compare Charts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Compare Cryptocurrencies</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <select id="crypto-selector" class="form-select" multiple>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                        <button class="btn btn-primary mt-2" onclick="addComparison()">Add to Compare</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="compareChart"></canvas>
+                    </div>
+                    <div class="btn-group mt-3">
+                        <button class="btn btn-outline-primary" onclick="updateCompareTimeframe('1d')">1D</button>
+                        <button class="btn btn-outline-primary" onclick="updateCompareTimeframe('1w')">1W</button>
+                        <button class="btn btn-outline-primary" onclick="updateCompareTimeframe('1m')">1M</button>
+                        <button class="btn btn-outline-primary" onclick="updateCompareTimeframe('1y')">1Y</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/compare.js') }}"></script>
+{% endblock %}
