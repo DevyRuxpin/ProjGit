@@ -1,28 +1,48 @@
 import pytest
-from app.models.portfolio import Portfolio, Holding
+from app.models.portfolio import Portfolio
 
-def test_create_portfolio(client, test_user):
-    client.post('/login', data={
-        'email': 'test@example.com',
-        'password': 'password123'
-    })
-    
-    response = client.post('/portfolio/create', json={
-        'name': 'Test Portfolio'
-    })
+def test_create_portfolio(client, auth_headers):
+    """Test portfolio creation"""
+    response = client.post('/portfolio/create',
+        json={'name': 'New Portfolio'},
+        headers=auth_headers
+    )
+    assert response.status_code == 201
+    assert 'id' in response.json
+
+def test_add_holding(client, test_portfolio, auth_headers):
+    """Test adding a holding to portfolio"""
+    response = client.post(f'/portfolio/{test_portfolio.id}/add',
+        json={
+            'cryptocurrency': 'bitcoin',
+            'quantity': 1.5,
+            'purchase_price': 50000
+        },
+        headers=auth_headers
+    )
     assert response.status_code == 200
-    assert Portfolio.query.filter_by(name='Test Portfolio').first() is not None
+    assert 'holding' in response.json
 
-def test_add_holding(client, test_user):
-    # Create portfolio first
-    portfolio = Portfolio(user_id=test_user.id, name='Test Portfolio')
-    db.session.add(portfolio)
-    db.session.commit()
-
-    response = client.post(f'/portfolio/{portfolio.id}/add', json={
-        'cryptocurrency': 'bitcoin',
-        'quantity': 1.0,
-        'purchase_price': 50000.0
-    })
+def test_get_portfolio(client, test_portfolio, auth_headers):
+    """Test getting portfolio details"""
+    response = client.get(f'/portfolio/{test_portfolio.id}',
+        headers=auth_headers
+    )
     assert response.status_code == 200
-    assert Holding.query.filter_by(portfolio_id=portfolio.id).first() is not None
+    assert response.json['name'] == 'Test Portfolio'
+
+def test_update_portfolio(client, test_portfolio, auth_headers):
+    """Test updating portfolio details"""
+    response = client.put(f'/portfolio/{test_portfolio.id}',
+        json={'name': 'Updated Portfolio'},
+        headers=auth_headers
+    )
+    assert response.status_code == 200
+    assert response.json['name'] == 'Updated Portfolio'
+
+def test_delete_portfolio(client, test_portfolio, auth_headers):
+    """Test portfolio deletion"""
+    response = client.delete(f'/portfolio/{test_portfolio.id}',
+        headers=auth_headers
+    )
+    assert response.status_code == 200
