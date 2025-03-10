@@ -10,9 +10,9 @@ login_manager = LoginManager()
 bcrypt = Bcrypt()
 mail = Mail()
 
-def create_app():
+def create_app(config_class=Config):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(config_class)
 
     db.init_app(app)
     login_manager.init_app(app)
@@ -22,14 +22,15 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'info'
 
-    from .routes import auth, dashboard, alerts, charts, portfolio
+    from app.routes import auth, portfolio, alerts, analytics
     app.register_blueprint(auth.bp)
-    app.register_blueprint(dashboard.bp)
-    app.register_blueprint(alerts.bp)
-    app.register_blueprint(charts.bp)
     app.register_blueprint(portfolio.bp)
+    app.register_blueprint(alerts.bp)
+    app.register_blueprint(analytics.bp)
 
-    with app.app_context():
+    @app.before_first_request
+    def create_tables():
         db.create_all()
 
     return app
+
