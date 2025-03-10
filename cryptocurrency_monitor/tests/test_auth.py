@@ -2,27 +2,47 @@ import pytest
 from app.models.user import User
 
 def test_register(client):
-    response = client.post('/register', data={
+    """Test user registration"""
+    response = client.post('/auth/register', json={
         'username': 'newuser',
-        'email': 'new@example.com',
-        'password': 'password123',
-        'confirm_password': 'password123'
+        'email': 'newuser@example.com',
+        'password': 'password123'
     })
-    assert response.status_code == 302  # Redirect after successful registration
-    assert User.query.filter_by(email='new@example.com').first() is not None
+    assert response.status_code == 201
+    assert 'user' in response.json
 
 def test_login(client, test_user):
-    response = client.post('/login', data={
+    """Test user login"""
+    response = client.post('/auth/login', json={
         'email': 'test@example.com',
         'password': 'password123'
     })
-    assert response.status_code == 302  # Redirect after successful login
+    assert response.status_code == 200
+    assert 'token' in response.json
 
-def test_logout(client, test_user):
-    # Login first
-    client.post('/login', data={
-        'email': 'test@example.com',
-        'password': 'password123'
+def test_invalid_login(client):
+    """Test login with invalid credentials"""
+    response = client.post('/auth/login', json={
+        'email': 'wrong@example.com',
+        'password': 'wrongpassword'
     })
-    response = client.get('/logout')
-    assert response.status_code == 302  # Redirect after logout
+    assert response.status_code == 401
+
+def test_password_reset(client, test_user):
+    """Test password reset functionality"""
+    # Request password reset
+    response = client.post('/auth/reset-password-request', json={
+        'email': test_user.email
+    })
+    assert response.status_code == 200
+
+def test_change_password(client, test_user, auth_headers):
+    """Test password change"""
+    response = client.post('/auth/change-password', 
+        json={
+            'old_password': 'password123',
+            'new_password': 'newpassword123'
+        },
+        headers=auth_headers
+    )
+    assert response.status_code == 200
