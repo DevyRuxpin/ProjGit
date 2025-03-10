@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2>My Portfolios</h2>
+    </div>
+    <div class="col-md-4 text-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPortfolioModal">
+            Create Portfolio
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    {% for portfolio in portfolios %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ portfolio.name }}</h5>
+                <p class="card-text">
+                    Created: {{ portfolio.created_at.strftime('%Y-%m-%d') }}<br>
+                    Holdings: {{ portfolio.holdings|length }}
+                </p>
+                <a href="{{ url_for('portfolio.view_portfolio', portfolio_id=portfolio.id) }}" 
+                   class="btn btn-primary">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Create Portfolio Modal -->
+<div class="modal fade" id="createPortfolioModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Portfolio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createPortfolioForm">
+                    <div class="mb-3">
+                        <label for="portfolioName" class="form-label">Portfolio Name</label>
+                        <input type="text" class="form-control" id="portfolioName" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="createPortfolioBtn">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('createPortfolioBtn').addEventListener('click', async function() {
+    const name = document.getElementById('portfolioName').value;
+    try {
+        const response = await fetch('/portfolio/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: name })
+        });
+        if (response.ok) {
+            location.reload();
+        } else {
+            alert('Error creating portfolio');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error creating portfolio');
+    }
+});
+</script>
+{% endblock %}
