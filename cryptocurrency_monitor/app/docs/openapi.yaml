@@ -1,0 +1,238 @@
+openapi: 3.0.0
+info:
+  title: Crypto Portfolio Tracker API
+  version: 1.0.0
+  description: API documentation for the Crypto Portfolio Tracking application
+
+servers:
+  - url: http://localhost:5000
+    description: Development server
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    Portfolio:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        holdings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Holding'
+        total_value:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+
+    Holding:
+      type: object
+      properties:
+        id:
+          type: integer
+        cryptocurrency:
+          type: string
+        quantity:
+          type: number
+        purchase_price:
+          type: number
+        current_price:
+          type: number
+        profit_loss:
+          type: number
+
+    Alert:
+      type: object
+      properties:
+        id:
+          type: integer
+        cryptocurrency:
+          type: string
+        condition:
+          type: string
+          enum: [above, below]
+        price_threshold:
+          type: number
+        is_active:
+          type: boolean
+
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid input
+
+  /auth/login:
+    post:
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+  /portfolio:
+    get:
+      summary: Get all portfolios
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of portfolios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Portfolio'
+
+    post:
+      summary: Create new portfolio
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Portfolio created successfully
+
+  /portfolio/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get portfolio details
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Portfolio details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+
+    put:
+      summary: Update portfolio
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Portfolio updated successfully
+
+    delete:
+      summary: Delete portfolio
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Portfolio deleted successfully
+
+  /alerts:
+    get:
+      summary: Get all alerts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alert'
+
+    post:
+      summary: Create new alert
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cryptocurrency:
+                  type: string
+                condition:
+                  type: string
+                  enum: [above, below]
+                price_threshold:
+                  type: number
+      responses:
+        '201':
+          description: Alert created successfully
