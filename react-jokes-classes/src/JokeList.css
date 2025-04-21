@@ -1,0 +1,88 @@
+@import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
+
+.JokeList {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  min-height: 80vh;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.JokeList-sidebar {
+  background: #9575cd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  text-align: center;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.JokeList-title {
+  font-size: 4rem;
+  margin: 2rem;
+  color: white;
+  font-weight: 300;
+  letter-spacing: 0.6rem;
+}
+
+.JokeList-title span {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.JokeList-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.JokeList-getmore,
+.JokeList-reset {
+  font-size: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  background-color: #9575cd;
+  color: white;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.JokeList-getmore:hover,
+.JokeList-reset:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.JokeList-jokes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding: 1rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  color: #9575cd;
+  font-size: 1.5rem;
+}
+
+.JokeList-getmore:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
