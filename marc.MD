@@ -1,8 +1,8 @@
-```yaml
+<!--
 theme: minimal
 accent: "#2b6cb0"
 font: Fira Sans
-```
+-->
 
 # Marc David Harriman  
 ### Full-Stack Engineer | OSINT Consultant  
