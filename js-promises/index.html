@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Promises & Async/Await Exercises</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .fact {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .card {
+            display: inline-block;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card.hearts, .card.diamonds {
+            color: #dc3545;
+        }
+        
+        .card.spades, .card.clubs {
+            color: #333;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+        
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Promises & Async/Await Exercises</h1>
+    
+    <!-- Part 1: Number Facts -->
+    <div class="container">
+        <h2>Part 1: Number Facts</h2>
+        
+        <div class="section">
+            <h3>1. Single Number Fact</h3>
+            <button onclick="getSingleFact()">Get Fact About My Favorite Number (42)</button>
+            <div id="single-fact"></div>
+        </div>
+        
+        <div class="section">
+            <h3>2. Multiple Number Facts</h3>
+            <button onclick="getMultipleFacts()">Get Facts About Multiple Numbers</button>
+            <div id="multiple-facts"></div>
+        </div>
+        
+        <div class="section">
+            <h3>3. Four Facts About My Favorite Number</h3>
+            <button onclick="getFourFacts()">Get 4 Facts About My Favorite Number (42)</button>
+            <div id="four-facts"></div>
+        </div>
+    </div>
+    
+    <!-- Part 2: Deck of Cards -->
+    <div class="container">
+        <h2>Part 2: Deck of Cards</h2>
+        
+        <div class="section">
+            <h3>1. Single Card</h3>
+            <button onclick="getSingleCard()">Draw a Single Card</button>
+            <div id="single-card"></div>
+        </div>
+        
+        <div class="section">
+            <h3>2. Two Cards from Same Deck</h3>
+            <button onclick="getTwoCards()">Draw Two Cards from Same Deck</button>
+            <div id="two-cards"></div>
+        </div>
+        
+        <div class="section">
+            <h3>3. Interactive Card Deck</h3>
+            <button id="new-deck-btn" onclick="createNewDeck()">Create New Deck</button>
+            <button id="draw-card-btn" onclick="drawCard()" disabled>Draw a Card</button>
+            <div id="deck-info"></div>
+            <div id="drawn-cards"></div>
+        </div>
+    </div>
+
+    <script src="number-facts.js"></script>
+    <script src="deck-of-cards.js"></script>
+</body>
+</html> 
