@@ -1,0 +1,12 @@
+{
+  "args": {},
+  "headers": {
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Encoding": "gzip, compress, deflate, br",
+    "Host": "httpbin.org",
+    "User-Agent": "axios/1.10.0",
+    "X-Amzn-Trace-Id": "Root=1-68589851-509414df09d92d49284add2d"
+  },
+  "origin": "72.195.130.199",
+  "url": "https://httpbin.org/get"
+}
