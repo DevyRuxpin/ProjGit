@@ -200,6 +200,3 @@ The project will demonstrate proficiency in full-stack development, user experie
 3. **Development environment** setup and configuration
 4. **Regular progress updates** and milestone reviews
 
----
-
-**Repository:** [GitHub Repository URL] 
