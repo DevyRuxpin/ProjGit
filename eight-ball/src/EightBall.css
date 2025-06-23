@@ -1,0 +1,28 @@
+.EightBall {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.EightBall:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.EightBall-msg {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.4;
+} 
