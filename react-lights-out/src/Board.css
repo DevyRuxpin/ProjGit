@@ -1,0 +1,17 @@
+.Board {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Board-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.winner {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4CAF50;
+  margin: 2rem;
+  text-align: center;
+}
