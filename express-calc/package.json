@@ -1,0 +1,22 @@
+{
+  "name": "express-calc",
+  "version": "1.0.0",
+  "description": "Express.js calculator with statistical operations",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "supertest": "^6.3.3"
+  },
+  "keywords": ["express", "calculator", "statistics"],
+  "author": "",
+  "license": "MIT"
+} 
